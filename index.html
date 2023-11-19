@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="https://lnmaximos.github.io/placar-eterno/images/favicon.ico">
+    <link rel="stylesheet" href="https://lnmaximos.github.io/placar-eterno/css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Placar Eterno | Inter x Santos</title>
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="https://lnmaximos.github.io/placar-eterno/images/placar.png" alt="logo">
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">Placar Eterno</span>
+                    <span class="game">Santos x Internacional</span>
+                </div>
+            </div>
+
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-coin-stack icon'></i>
+                            <span class="text nav-text">Apostas</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-football icon'></i>
+                            <span class="text nav-text">Jogos</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-store icon'></i>
+                            <span class="text nav-text">Loja</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="moon-sun">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark Mode</span>
+
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div class="container">
+            <h1>Placar Eterno</h1>
+            <div class="teams">
+                <div id="inter">
+                    <h2>Inter</h2>
+                    <p>0</p>
+                </div>
+                <div id="santos">
+                    <h2>Santos</h2>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="clock">
+                <h2>Tempo de jogo:</h2>
+                <p id="timer">00:00</p>
+            </div>
+            <div>
+                <p id="texto" style="white-space: pre-line;"></p>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1>Quem você acha que marcará o próximo gol?</h1>
+            <div class="teams">
+                <div class="clicavel" id="btnApostarInter">
+                    <h2>Internacional</h2>
+                </div>
+                <div class="clicavel" id="btnApostarSantos">
+                    <h2>Santos</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="bottom">
+            <p id="proximoGol" style="white-space: pre-line;"></p>
+        </div>
+    </section>
+
+    <script src="https://lnmaximos.github.io/placar-eterno/js/script.js"></script>
+</body>
+
+</html>
