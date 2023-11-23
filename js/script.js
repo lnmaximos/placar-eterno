@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const proximoGolInter = calcularProximoGol(placarFinalInter, tempoJogo, interGols);
         const proximoGolSantos = calcularProximoGol(placarFinalSantos, tempoJogo, santosGols);
 
-        const textoFormatado = `O jogo entre Inter e Santos teve início às 16h do dia 22/10/2023. Ao final do jogo, o placar estava 7 x 1 para o Inter.\n\nHoje é ${diaSemana}, ${dataAtual.getDate()} de ${mesExtenso} de ${dataAtual.getFullYear()}, às ${String(dataAtual.getHours()).padStart(2, '0')}:${String(dataAtual.getMinutes()).padStart(2, '0')}:${String(dataAtual.getSeconds()).padStart(2, '0')}, e o Internacional ainda está botando o Santos pra mamar com um belo ${placarFinalInter} a ${placarFinalSantos}.`;
+        const textoFormatado = `O jogo entre Inter e Santos teve início às 16h do dia 22/10/2023. Ao final do jogo, o placar estava 7 x 1 para o Inter.\n\nHoje é ${diaSemana}, ${dataAtual.getDate()} de ${mesExtenso} de ${dataAtual.getFullYear()}, às ${String(dataAtual.getHours()).padStart(2, '0')}:${String(dataAtual.getMinutes()).padStart(2, '0')}:${String(dataAtual.getSeconds()).padStart(2, '0')}, e o Internacional ainda está amassando o Santos com um belo ${placarFinalInter} a ${placarFinalSantos}.`;
 
         const textoProximoGol = `O próximo gol do Internacional será em: ${proximoGolInter}.\nO próximo gol do Santos será em: ${proximoGolSantos}.`;
 
