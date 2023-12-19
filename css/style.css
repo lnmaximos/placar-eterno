@@ -15,10 +15,10 @@
 }
 
 body.light {
-    --body-color: #F4F2EE;
+    --body-color: #EAEDED;
     --container-color: #FFF;
     --primary-color: #50C878;
-    --primary-color-light: #F4F2EE;
+    --primary-color-light: #F6F6F6;
     --toggle-color: #DDD;
     --text-color: #707070;
 }
