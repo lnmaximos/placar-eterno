@@ -67,43 +67,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const dataJogo = new Date('2023-10-22T16:00:00');
 
-    const interGols = 7;
-    const santosGols = 1;
-    const tempoJogo = 90;
-
-    const golsPorMinutoInter = interGols / tempoJogo;
-    const golsPorMinutoSantos = santosGols / tempoJogo;
+    const minutosGolsInter = [1, 14, 27, 39, 54, 61, 75];
+    const minutosGolsSantos = [80];
 
     function atualizarPlacar() {
         const dataAtual = new Date();
 
-        const diferencaEmMilissegundos = dataAtual - dataJogo;
-        const diferencaEmMinutos = diferencaEmMilissegundos / (1000 * 60);
+        const minutosPassados = (dataAtual - dataJogo) / (1000 * 60);
 
-        const placarFinalInter = Math.floor(golsPorMinutoInter * diferencaEmMinutos);
-        const placarFinalSantos = Math.floor(golsPorMinutoSantos * diferencaEmMinutos);
+        const numJogos = Math.floor(minutosPassados / 90);
 
-        const tempoDeJogo = `${String(Math.floor(diferencaEmMinutos / 60)).padStart(2, '0')}:${String(Math.floor(diferencaEmMinutos % 60)).padStart(2, '0')}:${String(Math.floor((diferencaEmMilissegundos / 1000) % 60)).padStart(2, '0')}`;
+        const tempoJogoAtual = minutosPassados - (numJogos * 90);
 
-        const diaSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'][dataAtual.getDay()];
-        const mesExtenso = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'][dataAtual.getMonth()];
+        const golsInterTotal = (minutosGolsInter.length * numJogos) + minutosGolsInter.filter((minuto) => minuto <= tempoJogoAtual).length;
+        const golsSantosTotal = (minutosGolsSantos.length * numJogos) + minutosGolsSantos.filter((minuto) => minuto <= tempoJogoAtual).length;
 
-        const calcularProximoGol = (placarFinal, tempoJogo, gols) => {
-            const minutosProximoGol = (placarFinal + 1) * (tempoJogo / gols);
-            const milissegundosProximoGol = minutosProximoGol * 60000;
+        const calcularProximoGol = (minutosGol) => {
+            let i = 0;
+            let minutosProximoGol;
 
-            const minutosAjustados = Math.floor(minutosProximoGol - diferencaEmMinutos);
-            const segundosAjustados = Math.floor((milissegundosProximoGol - diferencaEmMilissegundos) / 1000) % 60;
+            while (minutosGol[i] < tempoJogoAtual) {
+                i++;
+            }
+
+            if (i > minutosGol.length - 1) {
+                minutosProximoGol = (90 - tempoJogoAtual) + minutosGol[0];
+            } else {
+                minutosProximoGol = minutosGol[i] - tempoJogoAtual;
+            }
+
+            const minutosAjustados = Math.floor(minutosProximoGol);
+            const segundosAjustados = Math.floor((minutosProximoGol - minutosAjustados) * 60);
 
             return `${String(minutosAjustados).padStart(2, '0')}:${String(segundosAjustados).padStart(2, '0')}`;
         }
 
-        const proximoGolInter = calcularProximoGol(placarFinalInter, tempoJogo, interGols);
-        const proximoGolSantos = calcularProximoGol(placarFinalSantos, tempoJogo, santosGols);
-
-        const textoFormatado = `O jogo entre Inter e Santos teve início às 16h do dia 22/10/2023. Ao final do jogo, o placar estava 7 x 1 para o Inter.\n\nHoje é ${diaSemana}, ${dataAtual.getDate()} de ${mesExtenso} de ${dataAtual.getFullYear()}, às ${String(dataAtual.getHours()).padStart(2, '0')}:${String(dataAtual.getMinutes()).padStart(2, '0')}:${String(dataAtual.getSeconds()).padStart(2, '0')}, e o Internacional ainda está amassando o Santos com um belo ${placarFinalInter} a ${placarFinalSantos}.`;
-
-        const textoProximoGol = `O próximo gol do Internacional será em: ${proximoGolInter}.\nO próximo gol do Santos será em: ${proximoGolSantos}.`;
+        const proximoGolInter = calcularProximoGol(minutosGolsInter);
+        const proximoGolSantos = calcularProximoGol(minutosGolsSantos);
 
         let golMaisProximo;
 
@@ -116,9 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         document.getElementById("btnApostarInter").onclick = function () {
-            if (golMaisProximo == 'both') {
-                alert("Os dois times marcarão gol no mesmo instante! Nenhum ponto será contabilizado.");
-            } else if (golMaisProximo == "inter") {
+            if (golMaisProximo == "inter") {
                 alert("Você acertou! O próximo gol será do Internacional.");
             } else {
                 alert("Você errou! O próximo gol será do Santos.");
@@ -126,17 +124,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         document.getElementById("btnApostarSantos").onclick = function () {
-            if (golMaisProximo == 'both') {
-                alert("Os dois times marcarão gol no mesmo instante! Nenhum ponto será contabilizado.");
-            } else if (golMaisProximo == "santos") {
+            if (golMaisProximo == "santos") {
                 alert("Você acertou! O próximo gol será do Santos.");
             } else {
                 alert("Você errou! O próximo gol será do Internacional.");
             }
         }
 
-        document.getElementById('inter').querySelector('p').textContent = placarFinalInter;
-        document.getElementById('santos').querySelector('p').textContent = placarFinalSantos;
+        const diaSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'][dataAtual.getDay()];
+        const mesExtenso = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'][dataAtual.getMonth()];
+
+        const tempoDeJogo = `${String(Math.floor(minutosPassados / (60 * 24))).padStart(2, '0')}d ${String(Math.floor(minutosPassados % (60 * 24) / 60)).padStart(2, '0')}h ${String(Math.floor(minutosPassados % 60)).padStart(2, '0')}m ${String(Math.floor((minutosPassados * 60) % 60)).padStart(2, '0')}s`
+
+        const textoFormatado = `O jogo entre Inter e Santos teve início às 16h do dia 22/10/2023. Ao final do jogo, o placar estava 7 x 1 para o Inter.\n\nHoje é ${diaSemana}, ${dataAtual.getDate()} de ${mesExtenso} de ${dataAtual.getFullYear()}, às ${String(dataAtual.getHours()).padStart(2, '0')}:${String(dataAtual.getMinutes()).padStart(2, '0')}:${String(dataAtual.getSeconds()).padStart(2, '0')}, e o Internacional ainda está amassando o Santos com um belo ${golsInterTotal} a ${golsSantosTotal}.`;
+
+        const textoProximoGol = `O próximo gol do Internacional será em: ${proximoGolInter}.\nO próximo gol do Santos será em: ${proximoGolSantos}.`;
+
+        document.getElementById('inter').querySelector('p').textContent = golsInterTotal;
+        document.getElementById('santos').querySelector('p').textContent = golsSantosTotal;
         document.getElementById('timer').textContent = `${tempoDeJogo}`;
         document.getElementById("texto").textContent = textoFormatado;
         document.getElementById("proximoGol").textContent = textoProximoGol;
