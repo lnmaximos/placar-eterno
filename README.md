@@ -8,7 +8,7 @@
 
 Este projeto apresenta uma simulação do placar do jogo entre Internacional e Santos, ocorrido em 22 de outubro de 2023, imaginando como estaria o resultado se a partida ainda estivesse em andamento, com base no resultado final de 7 x 1 a favor do Internacional.
 
-Acesse-o clicando <a href="https://lnmaximos.github.io/placar-eterno" target="_blank">aqui.</a>
+Acesse-o clicando <a href="https://leonmaximos.me/placar-eterno" target="_blank">aqui</a>.
 
 <h1>Imagens</h1>
 
